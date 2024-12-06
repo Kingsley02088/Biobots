@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biobots - Subscription Plans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #1e3a8a; /* Deep Blue */
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+        }
+
+        .pricing-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            text-align: center;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            border-left: 10px solid transparent;
+            border-bottom: 3px solid #dbe2e8;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: #1e3a8a; /* Deep Blue */
+        }
+
+        .pricing-card p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1e3a8a; /* Deep Blue */
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .price span {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .features {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        .features li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .cta-button {
+            background-color: #1e3a8a; /* Deep Blue */
+            color: #fff;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background-color: #3b82f6; /* Lighter Blue */
+        }
+
+        .basic-plan {
+            border-left: 10px solid #17a2b8; /* Teal */
+        }
+
+        .professional-plan {
+            border-left: 10px solid #f59e0b; /* Amber */
+        }
+
+        .enterprise-plan {
+            border-left: 10px solid #dc2626; /* Red */
+        }
+
+        @media (max-width: 768px) {
+            .pricing-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header for Pricing Section -->
+<div class="header">
+    <h1>Biobots - Subscription Plans</h1>
+    <p>Select the perfect plan for your needs and grow with us</p>
+</div>
+
+<!-- Pricing Subscription Cards -->
+<div class="pricing-container">
+
+    <!-- Basic Plan -->
+    <div class="pricing-card basic-plan">
+        <h3>Basic Plan</h3>
+        <div class="price">$19.99 <span>/ month</span></div>
+        <ul class="features">
+            <li>Voice Recognition</li>
+            <li>Punctuation Detection</li>
+            <li>Text Editing</li>
+            <li>Basic Voice Commands</li>
+            <li>Timestamping</li>
+        </ul>
+        <button class="cta-button">Get Started</button>
+    </div>
+
+    <!-- Professional Plan -->
+    <div class="pricing-card professional-plan">
+        <h3>Professional Plan</h3>
+        <div class="price">$49.99 <span>/ month</span></div>
+        <ul class="features">
+            <li>All Basic Plan Features</li>
+            <li>Multi-Language Support</li>
+            <li>Background Noise Filtering</li>
+            <li>Speaker Identification</li>
+            <li>Real-Time Translation</li>
+            <li>Sentiment Analysis</li>
+            <li>Keyword Recognition</li>
+        </ul>
+        <button class="cta-button">Get Started</button>
+    </div>
+
+    <!-- Enterprise Plan -->
+    <div class="pricing-card enterprise-plan">
+        <h3>Enterprise Plan</h3>
+        <div class="price">$199.99 <span>/ month</span></div>
+        <ul class="features">
+            <li>All Professional Plan Features</li>
+            <li>Voice Authentication</li>
+            <li>Meeting/Conversation Summarization</li>
+            <li>Voice-to-Text for Notes</li>
+            <li>Interactive Dialogues</li>
+            <li>Cloud Services Integration</li>
+            <li>Custom Integrations</li>
+            <li>Data Analytics</li>
+            <li>24/7 Support</li>
+        </ul>
+        <button class="cta-button">Get Started</button>
+    </div>
+
+</div>
+
+</body>
+</html>

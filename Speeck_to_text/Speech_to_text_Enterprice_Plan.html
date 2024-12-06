@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Notepad - Multilingual Speech to Text</title>
+    <meta name="description" content="Type with your voice using Google Speech Recognition and translate in real-time">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #001f3f;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+            position: relative;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            width: 90%;
+            background: rgba(0, 47, 89, 0.85);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            color: #ffffff;
+            padding: 20px;
+        }
+        .left-column, .right-column {
+            flex: 1;
+            padding: 15px;
+        }
+        .header {
+            background: linear-gradient(135deg, #005f99, #0074D9);
+            color: #ffffff;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .text-area-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .text-area {
+            width: 100%;
+            height: 150px;
+            border: none;
+            border-radius: 12px;
+            padding: 10px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            background: repeating-linear-gradient(
+                to bottom,
+                #ffffff 0%,
+                #ffffff 90%,
+                #d9e3f0 90%,
+                #d9e3f0 100%
+            );
+            background-size: 100% 1.8em;
+            color: #003f73;
+            resize: vertical;
+            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-family: 'Roboto', sans-serif;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .text-area:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 116, 217, 0.7);
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-start;
+            margin-top: 15px;
+        }
+        .button-group button {
+            padding: 10px;
+            background: linear-gradient(135deg, #39CCCC, #0074D9);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .button-group button:hover {
+            background: linear-gradient(135deg, #0074D9, #39CCCC);
+            transform: scale(1.05);
+        }
+        .icon {
+            font-size: 1.3rem;
+        }
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .social-buttons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: #333;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        .social-buttons a:hover {
+            background: #0074D9;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .header {
+                font-size: 1.4rem;
+            }
+            .text-area {
+                height: 130px;
+            }
+            .button-group {
+                justify-content: center;
+            }
+            .social-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+
+    <!-- Left Column for Outputs -->
+    <div class="left-column">
+        <!-- Text Area for Speech Recognition -->
+        <div class="text-area-container">
+            <textarea class="text-area" id="textArea" placeholder="Start speaking..."></textarea>
+        </div>
+
+        <!-- Translated Text Area -->
+        <div class="text-area-container">
+            <textarea class="text-area" id="translatedText" placeholder="Translated text will appear here..." readonly></textarea>
+        </div>
+    </div>
+
+    <!-- Right Column for Controls -->
+    <div class="right-column">
+        <!-- Language Selector -->
+        <div class="text-area-container">
+            <label for="language"></label>
+            <select id="language">
+                <option value="en-US">English (US)</option>
+                <option value="es-ES">Spanish</option>
+                <option value="fr-FR">French</option>
+                <option value="de-DE">German</option>
+                <option value="zh-CN">Chinese (Simplified)</option>
+                <option value="ar-SA">Arabic</option>
+                <option value="hi-IN">Hindi</option>
+                <option value="ru-RU">Russian</option>
+                <option value="ja-JP">Japanese</option>
+                <option value="pt-BR">Portuguese (Brazil)</option>
+            </select>
+        </div>
+
+        <!-- Button Group -->
+        <div class="button-group">
+            <button class="microphone" id="startButton"><i class="fas fa-microphone icon"></i> Start</button>
+            <button id="clearButton"><i class="fas fa-eraser icon"></i> Clear</button>
+            <button id="translateButton"><i class="fas fa-language icon"></i> Translate</button>
+            <button id="saveButton"><i class="fas fa-save icon"></i> Save</button>
+            <button id="shareButton"><i class="fas fa-share icon"></i> Share</button>
+            <button id="emailButton"><i class="fas fa-envelope icon"></i> Email</button>
+            <button id="printButton"><i class="fas fa-print icon"></i> Print</button>
+        </div>
+
+        <!-- Social Media Share Buttons -->
+        <div class="social-buttons">
+            <a href="https://facebook.com" target="_blank" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://wa.me" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com" target="_blank" title="Share on Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com" target="_blank" title="Share on TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize Speech Recognition API
+    const startButton = document.getElementById("startButton");
+    const textArea = document.getElementById("textArea");
+    const languageSelector = document.getElementById("language");
+    const translateButton = document.getElementById("translateButton");
+    const translatedTextArea = document.getElementById("translatedText");
+    const saveButton = document.getElementById("saveButton");
+    const shareButton = document.getElementById("shareButton");
+    const emailButton = document.getElementById("emailButton");
+    const printButton = document.getElementById("printButton");
+    const clearButton = document.getElementById("clearButton");
+
+    let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = languageSelector.value;
+
+    startButton.addEventListener("click", () => {
+        recognition.start();
+        startButton.disabled = true;
+    });
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        textArea.value = transcript;
+    };
+
+    recognition.onend = function() {
+        startButton.disabled = false;
+    };
+
+    translateButton.addEventListener("click", function() {
+        const targetLanguage = languageSelector.value;
+        const text = textArea.value;
+
+        // Example translation (you can use an API like Google Translate)
+        fetch(`https://api.mymemory.translated.net/get?q=${text}&langpair=en|${targetLanguage}`)
+            .then(response => response.json())
+            .then(data => {
+                translatedTextArea.value = data.responseData.translatedText;
+            })
+            .catch(error => console.error('Error during translation:', error));
+    });
+
+    // Save functionality (save text to local file)
+    saveButton.addEventListener("click", function() {
+        const blob = new Blob([textArea.value], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "voice_note.txt";
+        link.click();
+    });
+
+    // Share functionality (Share via Web Share API)
+    shareButton.addEventListener("click", function() {
+        if (navigator.share) {
+            navigator.share({
+                title: "Voice Note",
+                text: textArea.value,
+                url: window.location.href
+            }).catch(error => console.error("Error sharing:", error));
+        } else {
+            alert("Sharing is not supported on this device.");
+        }
+    });
+
+    // Email functionality (open email client with text as body)
+    emailButton.addEventListener("click", function() {
+        const subject = "Voice Note";
+        const body = encodeURIComponent(textArea.value);
+        window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    });
+
+    // Print functionality
+    printButton.addEventListener("click", function() {
+        const content = textArea.value;
+        const printWindow = window.open('', '', 'height=400,width=600');
+        printWindow.document.write('<pre>' + content + '</pre>');
+        printWindow.document.close();
+        printWindow.print();
+    });
+
+    // Clear functionality
+    clearButton.addEventListener("click", function() {
+        textArea.value = '';
+        translatedTextArea.value = '';
+    });
+</script>
+
+</body>
+</html>
