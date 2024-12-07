@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voice Notepad - Multilingual Speech to Text</title>
+    <title>Biobots Professional Plan</title>
     <meta name="description" content="Type with your voice using Google Speech Recognition and translate in real-time">
     <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -19,8 +20,10 @@
             align-items: center;
             min-height: 100vh;
             color: #ffffff;
-            position: relative; /* Required for floating button positioning */
+            position: relative;
+            /* Required for floating button positioning */
         }
+
         .container {
             max-width: 650px;
             width: 90%;
@@ -33,6 +36,7 @@
             flex-direction: column;
             color: #ffffff;
         }
+
         .header {
             background: linear-gradient(135deg, #005f99, #0074D9);
             color: #ffffff;
@@ -41,17 +45,20 @@
             font-size: 1.8rem;
             font-weight: 700;
         }
+
         .content {
             padding: 15px;
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
+
         .text-area-container {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
+
         .text-area {
             width: 100%;
             height: 150px;
@@ -60,13 +67,11 @@
             padding: 10px;
             font-size: 0.9rem;
             line-height: 1.6;
-            background: repeating-linear-gradient(
-                to bottom,
-                #ffffff 0%,
-                #ffffff 90%,
-                #d9e3f0 90%,
-                #d9e3f0 100%
-            );
+            background: repeating-linear-gradient(to bottom,
+                    #ffffff 0%,
+                    #ffffff 90%,
+                    #d9e3f0 90%,
+                    #d9e3f0 100%);
             background-size: 100% 1.8em;
             color: #003f73;
             resize: vertical;
@@ -75,18 +80,22 @@
             white-space: pre-wrap;
             word-wrap: break-word;
         }
+
         .text-area:focus {
             outline: none;
             box-shadow: 0 0 5px rgba(0, 116, 217, 0.7);
         }
+
         .language-selector {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
+
         .language-selector label {
             font-weight: 500;
         }
+
         .language-selector select {
             padding: 8px;
             font-size: 0.9rem;
@@ -96,11 +105,13 @@
             color: #003f73;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+
         .button-group {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             gap: 10px;
         }
+
         .button-group button {
             padding: 10px;
             background: linear-gradient(135deg, #39CCCC, #0074D9);
@@ -116,10 +127,12 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
             transition: transform 0.2s ease, background 0.2s ease;
         }
+
         .button-group button:hover {
             background: linear-gradient(135deg, #0074D9, #39CCCC);
             transform: scale(1.05);
         }
+
         .icon {
             font-size: 1.3rem;
         }
@@ -131,8 +144,10 @@
             left: 20px;
             display: flex;
             align-items: center;
-            gap: 10px; /* Space between the button and the text */
+            gap: 10px;
+            /* Space between the button and the text */
         }
+
         .upgrade-button {
             padding: 12px 24px;
             background: linear-gradient(135deg, #FF6347, #FF4500);
@@ -145,14 +160,17 @@
             cursor: pointer;
             transition: transform 0.3s ease, background 0.3s ease;
         }
+
         .upgrade-button:hover {
             background: linear-gradient(135deg, #FF4500, #FF6347);
             transform: scale(1.1);
         }
+
         .upgrade-button:focus {
             outline: none;
             box-shadow: 0 0 10px rgba(255, 69, 0, 0.8);
         }
+
         .upgrade-text {
             font-size: 1rem;
             font-weight: 500;
@@ -164,94 +182,98 @@
             .header {
                 font-size: 1.4rem;
             }
+
             .text-area {
                 height: 130px;
             }
+
             .button-group {
                 grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
             }
         }
     </style>
 </head>
+
 <body>
 
-<!-- Upgrade Button and Text -->
-<div class="upgrade-container">
-    <button class="upgrade-button">Upgrade</button>
-    <span class="upgrade-text">For More Features</span>
-</div>
+    <!-- Upgrade Button and Text -->
+    <div class="upgrade-container">
+        <button class="upgrade-button">Upgrade</button>
+        <span class="upgrade-text">For More Features</span>
+    </div>
 
-<div class="container">
-    <div class="header">Voice Notepad</div>
-    <div class="content">
-        <div class="language-selector">
-            <label for="language">Select Language:</label>
-            <select id="language">
-                <option value="en-US">English (US)</option>
-                <option value="es-ES">Spanish</option>
-                <option value="fr-FR">French</option>
-                <option value="de-DE">German</option>
-                <option value="zh-CN">Chinese (Simplified)</option>
-                <option value="ar-SA">Arabic</option>
-                <option value="hi-IN">Hindi</option>
-                <option value="ru-RU">Russian</option>
-                <option value="ja-JP">Japanese</option>
-                <option value="pt-BR">Portuguese (Brazil)</option>
-            </select>
-        </div>
+    <div class="container">
+        <div class="header">Professional Plan</div>
+        <div class="content">
+            <div class="language-selector">
+                <label for="language">Select Language:</label>
+                <select id="language">
+                    <option value="en-US">English (US)</option>
+                    <option value="es-ES">Spanish</option>
+                    <option value="fr-FR">French</option>
+                    <option value="de-DE">German</option>
+                    <option value="zh-CN">Chinese (Simplified)</option>
+                    <option value="ar-SA">Arabic</option>
+                    <option value="hi-IN">Hindi</option>
+                    <option value="ru-RU">Russian</option>
+                    <option value="ja-JP">Japanese</option>
+                    <option value="pt-BR">Portuguese (Brazil)</option>
+                </select>
+            </div>
 
-        <div class="text-area-container">
-            <textarea class="text-area" id="textArea" placeholder="Start speaking..."></textarea>
-        </div>
+            <div class="text-area-container">
+                <textarea class="text-area" id="textArea" placeholder="Start speaking..."></textarea>
+            </div>
 
-        <div class="button-group">
-            <button class="microphone" id="startButton"><i class="fas fa-microphone icon"></i> Start</button>
-            <button id="copyButton"><i class="fas fa-copy icon"></i> Copy</button>
-            <button id="saveButton"><i class="fas fa-save icon"></i> Save</button>
-            <button id="publishButton"><i class="fas fa-share icon"></i> Publish</button>
-            <button id="clearButton"><i class="fas fa-eraser icon"></i> Clear</button>
+            <div class="button-group">
+                <button class="microphone" id="startButton"><i class="fas fa-microphone icon"></i> Start</button>
+                <button id="copyButton"><i class="fas fa-copy icon"></i> Copy</button>
+                <button id="saveButton"><i class="fas fa-save icon"></i> Save</button>
+                <button id="publishButton"><i class="fas fa-share icon"></i> Publish</button>
+                <button id="clearButton"><i class="fas fa-eraser icon"></i> Clear</button>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    // Initialize Speech Recognition API
-    const startButton = document.getElementById("startButton");
-    const textArea = document.getElementById("textArea");
-    const languageSelector = document.getElementById("language");
+    <script>
+        // Initialize Speech Recognition API
+        const startButton = document.getElementById("startButton");
+        const textArea = document.getElementById("textArea");
+        const languageSelector = document.getElementById("language");
 
-    // Create SpeechRecognition object
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
+        // Create SpeechRecognition object
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
 
-    // Set default language
-    recognition.lang = languageSelector.value;
-
-    // Update language based on dropdown selection
-    languageSelector.addEventListener("change", function() {
+        // Set default language
         recognition.lang = languageSelector.value;
-    });
 
-    // Start dictation when the start button is clicked
-    startButton.addEventListener("click", function() {
-        recognition.start();
-        startButton.disabled = true;
-        recognition.onresult = function(event) {
-            const transcript = event.results[0][0].transcript;
-            textArea.value += transcript + " ";
-        };
-    });
+        // Update language based on dropdown selection
+        languageSelector.addEventListener("change", function () {
+            recognition.lang = languageSelector.value;
+        });
 
-    // Handle clearing the text area
-    document.getElementById("clearButton").addEventListener("click", function() {
-        textArea.value = "";
-    });
+        // Start dictation when the start button is clicked
+        startButton.addEventListener("click", function () {
+            recognition.start();
+            startButton.disabled = true;
+            recognition.onresult = function (event) {
+                const transcript = event.results[0][0].transcript;
+                textArea.value += transcript + " ";
+            };
+        });
 
-    // Handle publish functionality (optional)
-    document.getElementById("publishButton").addEventListener("click", function() {
-        alert("Feature not implemented yet!");
-    });
-</script>
+        // Handle clearing the text area
+        document.getElementById("clearButton").addEventListener("click", function () {
+            textArea.value = "";
+        });
+
+        // Handle publish functionality (optional)
+        document.getElementById("publishButton").addEventListener("click", function () {
+            alert("Feature not implemented yet!");
+        });
+    </script>
 
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,11 @@
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-functions.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+
+
+
 
   <style>
     body {
@@ -67,11 +73,11 @@
       max-width: 100px;
       max-height: 40px;
       margin-bottom: 10px;
+      transition: all 0.3s ease;
     }
 
-    .payment-option span {
-      font-size: 16px;
-      font-weight: bold;
+    .payment-option:hover img {
+      transform: scale(1.1);
     }
 
     .payment-info {
@@ -79,21 +85,12 @@
       font-size: 18px;
       color: #f39c12;
     }
-
-    /* Add smooth transition */
-    .payment-option img {
-      transition: all 0.3s ease;
-    }
-
-    .payment-option:hover img {
-      transform: scale(1.1);
-    }
   </style>
 </head>
-<body>
 
+<body>
   <div class="payment-container">
-    <h2>Choose Your Payment Method</h2>
+    <h2>Pay for Basic Plan</h2>
     <p class="payment-info"></p>
 
     <!-- Payment Option Selection -->
@@ -101,63 +98,71 @@
       <!-- Stripe Option -->
       <div id="stripe-option" class="payment-option">
         <img src="stripe.png" alt="Stripe Logo">
-        <span></span>
+        <span>Stripe</span>
       </div>
 
-      <!-- PayPal Option -->
-      <div id="paypal-option" class="payment-option">
-        <img src="paypal.png" alt="PayPal Logo">
-        <span></span>
-      </div>
+
     </div>
+
+    <!-- PayPal Button Integration -->
+    <div id="paypal-button-container-P-3LR94535BY1601357M5J36WY"></div>
   </div>
 
+  <!-- PayPal SDK -->
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AZg_exPQQeOjJ12aqv6SVfQ7Ee2EO1LWgB3yNZfaks9aEkbnmUFP-oEfk2p26UoeUb4vNR2x7PDh-OnL&vault=true&intent=subscription"
+    data-sdk-integration-source="button-factory"></script>
+
+
+  <!-- Firebase and Payment Scripts -->
   <script>
-    // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAO1nBxWMdHtaTtMml9KZpQxw2tD1r6CcU",
-    authDomain: "biobots-de1bd.firebaseapp.com",
-    projectId: "biobots-de1bd",
-    storageBucket: "biobots-de1bd.firebasestorage.app",
-    messagingSenderId: "67415770770",
-    appId: "1:67415770770:web:60b71ef44522f7f04e484b",
-    measurementId: "G-57M4MSJH7E"
-  };
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAO1nBxWMdHtaTtMml9KZpQxw2tD1r6CcU",
+      authDomain: "biobots-de1bd.firebaseapp.com",
+      projectId: "biobots-de1bd",
+      storageBucket: "biobots-de1bd.appspot.com",
+      messagingSenderId: "67415770770",
+      appId: "1:67415770770:web:60b71ef44522f7f04e484b",
+      measurementId: "G-57M4MSJH7E"
+    };
+
     // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const functions = firebase.functions();
 
-    const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY');  // Replace with your Stripe public key
 
-    // Handle Stripe Option Click
+    // Stripe Initialization
+    const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY');
+
+    // Stripe Payment Handler
     document.getElementById('stripe-option').addEventListener('click', function () {
-      // Call Firebase Function to create Stripe Checkout session
       const createCheckoutSession = functions.httpsCallable('createCheckoutSession');
-      createCheckoutSession({
-        priceId: 'YOUR_STRIPE_PRICE_ID',  // Replace with your Stripe Price ID
-      })
-      .then(function (result) {
-        const sessionId = result.data.sessionId;
-        return stripe.redirectToCheckout({ sessionId: sessionId });
-      })
-      .then(function (result) {
-        if (result.error) {
-          alert(result.error.message);
-        }
-      })
-      .catch(function (error) {
-        console.error("Error processing payment:", error);
-        alert("There was an error. Please try again.");
-      });
+      createCheckoutSession({ priceId: 'YOUR_STRIPE_PRICE_ID' })
+        .then(result => {
+          const sessionId = result.data.sessionId;
+          return stripe.redirectToCheckout({ sessionId });
+        })
+        .catch(error => {
+          console.error("Error processing payment:", error);
+          alert("There was an error. Please try again.");
+        });
     });
 
-    // Handle PayPal Option Click
-    document.getElementById('paypal-option').addEventListener('click', function () {
-      // Redirect to PayPal subscription page
-      window.location.href = "https://www.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=YOUR_PAYPAL_ALIAS";  // Replace with your PayPal alias
-    });
+    // PayPal Buttons Integration
+    paypal.Buttons({
+      style: {
+        shape: 'pill',
+        color: 'gold',
+        layout: 'vertical',
+        label: 'subscribe'
+      },
+      createSubscription: function (data, actions) {
+        return actions.subscription.create({ plan_id: 'P-3LR94535BY1601357M5J36WY' });
+      },
+      onApprove: function (data, actions) {
+        alert(`Subscription ID: ${data.subscriptionID}`);
+      }
+    }).render('#paypal-button-container-P-3LR94535BY1601357M5J36WY');
   </script>
-
 </body>
+
 </html>
