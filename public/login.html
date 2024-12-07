@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport meta tag for responsiveness -->
 	<title>Slide Navbar</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
@@ -14,6 +16,27 @@
 			text-align: center;
 		}
 
+		/* Media Query to make the form responsive */
+		@media (max-width: 768px) {
+			/* Adjust the form container width for smaller screens */
+			.signup, .login {
+				width: 100%;
+				max-width: 100%;
+				padding: 15px;
+			}
+
+			/* Adjust input fields and buttons */
+			input[type="text"], input[type="email"], input[type="password"], button {
+				width: 100%;
+				padding: 12px;
+				margin: 10px 0;
+			}
+
+			/* Adjust font sizes for mobile screens */
+			input[type="text"], input[type="email"], input[type="password"], button {
+				font-size: 14px;
+			}
+		}
 	</style>
 </head>
 <body>

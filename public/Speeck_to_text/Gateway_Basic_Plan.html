@@ -110,7 +110,7 @@
 
   <!-- PayPal SDK -->
   <script
-    src="https://www.paypal.com/sdk/js?client-id=AZg_exPQQeOjJ12aqv6SVfQ7Ee2EO1LWgB3yNZfaks9aEkbnmUFP-oEfk2p26UoeUb4vNR2x7PDh-OnL&vault=true&intent=subscription"
+    src="https://www.paypal.com/sdk/js?client-id=Aat6X2mjLvMkQQsa6E62-UfnX9MACqdDfQgFytloixPe5SIKrV823HyeR8DY01P4QiG-M2HzmdOzG7kq&vault=true&intent=subscription"
     data-sdk-integration-source="button-factory"></script>
 
 
@@ -121,13 +121,15 @@
       apiKey: "AIzaSyAO1nBxWMdHtaTtMml9KZpQxw2tD1r6CcU",
       authDomain: "biobots-de1bd.firebaseapp.com",
       projectId: "biobots-de1bd",
-      storageBucket: "biobots-de1bd.appspot.com",
+      storageBucket: "biobots-de1bd.firebasestorage.app",
       messagingSenderId: "67415770770",
       appId: "1:67415770770:web:60b71ef44522f7f04e484b",
       measurementId: "G-57M4MSJH7E"
     };
 
     // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
 
 
     // Stripe Initialization
